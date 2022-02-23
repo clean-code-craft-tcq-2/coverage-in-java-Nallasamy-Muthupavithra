@@ -49,7 +49,7 @@ public class TypewiseAlert {
 
   public static void sendToController(final BreachType breachType) {
     int header = 0xfeed;
-    System.out.printf("%i : %i\n", header, breachType);
+    System.out.printf("%d : %s\n", header, breachType);
   }
 
   public static void mailContent(final String recepient, final BreachType breachType) {
