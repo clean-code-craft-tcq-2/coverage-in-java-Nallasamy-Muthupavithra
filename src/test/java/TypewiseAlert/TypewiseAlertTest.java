@@ -34,6 +34,7 @@ public class TypewiseAlertTest {
   public void testCheckAlert() {
     TypewiseAlert.checkAndAlert(AlertTarget.mailAlert, CoolingType.passiveCoolingType, 36.0);  
     TypewiseAlert.checkAndAlert(AlertTarget.mailAlert, CoolingType.hiActiveCoolingType, 36.0);
+    TypewiseAlert.checkAndAlert(AlertTarget.mailAlert, CoolingType.medActiveCoolingType, -1.0);
     TypewiseAlert.checkAndAlert(AlertTarget.contrlAlert, CoolingType.passiveCoolingType, 36.0);
   }
 
