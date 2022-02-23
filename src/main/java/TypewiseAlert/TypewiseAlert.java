@@ -7,10 +7,21 @@ public class TypewiseAlert {
 
 
   public enum BreachType {
-                          NORMAL,
-                          TOO_LOW,
-                          TOO_HIGH
-  };
+                          NORMAL("normal"),
+                          TOO_LOW("too low"),
+                          TOO_HIGH("too high");
+
+    private final String type;
+
+    private BreachType(final String type) {
+      this.type = type;
+    }
+
+
+    public String getType() {
+      return this.type;
+    }
+  }
 
   public static BreachType inferBreach(final double value, final double lowerLimit, final double upperLimit) {
     if (value < lowerLimit) {
@@ -21,7 +32,6 @@ public class TypewiseAlert {
     }
     return BreachType.NORMAL;
   }
-
 
   public static BreachType classifyTemperatureBreach(final CoolingType coolingType, final double temperatureInC) {
     CoolingTypeContext coolingTypeContext = new CoolingTypeContext(coolingType);
@@ -42,19 +52,15 @@ public class TypewiseAlert {
     System.out.printf("%i : %i\n", header, breachType);
   }
 
+  public static void mailContent(final String recepient, final BreachType breachType) {
+    System.out.printf("To: %s\n", recepient);
+    System.out.println("Hi, the temperature is " + breachType.getType() + "\n");
+  }
+
   public static void sendToEmail(final BreachType breachType) {
     String recepient = "a.b@c.com";
-    switch (breachType) {
-      case TOO_LOW:
-        System.out.printf("To: %s\n", recepient);
-        System.out.println("Hi, the temperature is too low\n");
-        break;
-      case TOO_HIGH:
-        System.out.printf("To: %s\n", recepient);
-        System.out.println("Hi, the temperature is too high\n");
-        break;
-      case NORMAL:
-        break;
+    if (!breachType.equals(BreachType.NORMAL)) {
+      mailContent(recepient, breachType);
     }
   }
 }
