@@ -1,5 +1,6 @@
 package TypewiseAlert;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -44,5 +45,19 @@ public class TypewiseAlertTest {
     assertTrue(TypewiseAlert.inferBreach(12, 20, 30) == TypewiseAlert.BreachType.TOO_LOW);
     assertTrue(TypewiseAlert.inferBreach(22, 20, 30) == TypewiseAlert.BreachType.NORMAL);
     assertTrue(TypewiseAlert.inferBreach(32, 20, 30) == TypewiseAlert.BreachType.TOO_HIGH);
+  }
+  
+    class TypewiseAlertMock extends TypewiseAlert {
+
+    public void mockMethod() {
+      System.out.println("Inside TypewiseAlert Mock Class");
+    }
+  }
+
+  @Test
+  public void testTypewiseAlertClass() {
+    TypewiseAlertMock typewiseAlert = new TypewiseAlertMock();
+    assertNotNull(typewiseAlert);
+    typewiseAlert.mockMethod();
   }
 }
